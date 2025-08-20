@@ -10,5 +10,3 @@ source "$SCRIPTS_DIR/00_lib.sh"
 log "updating system packages..."
 sudo apt-get update && sudo apt-get -y dist-upgrade
 
-log "installing system dependencies..."
-sudo apt install git cmake g++ python3 python3-pip screen -y

@@ -9,6 +9,9 @@ source "$SCRIPTS_DIR/00_lib.sh"
 
 NAVIO2_GIT="https://github.com/emlid/Navio2.git"
 
+log "installing system dependencies..."
+sudo apt install git cmake g++ python3 python3-pip screen -y
+
 log "cloning from $NAVIO2_GIT..."
 
 if [ -d "$NAVIO2_DIR" ]; then 

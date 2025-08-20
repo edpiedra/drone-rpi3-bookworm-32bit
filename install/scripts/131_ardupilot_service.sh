@@ -26,7 +26,7 @@ After=network.target
 
 [Service]
 ExecStart=$ARDUPILOT_BIN -A udp:$WIN_IP:14550
-WorkingDirectory=$WORK_DIR
+WorkingDirectory=$ARDUPILOT_DIR
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
