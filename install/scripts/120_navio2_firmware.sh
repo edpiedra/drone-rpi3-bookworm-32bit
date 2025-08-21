@@ -18,4 +18,4 @@ require_root
 
 log "installing rcio firmware..."
 cd "$NAVIO2_C_DIR"
-sudo ./install_tools.sh
+sudo bash ./install_tools.sh
