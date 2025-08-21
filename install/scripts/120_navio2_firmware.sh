@@ -17,5 +17,5 @@ require_root(){
 require_root
 
 log "installing rcio firmware..."
-cd "$NAVIO_C_DIR"
+cd "$NAVIO2_C_DIR"
 sudo ./install_tools.sh
