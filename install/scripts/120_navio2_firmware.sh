@@ -17,5 +17,4 @@ require_root(){
 require_root
 
 log "installing rcio firmware..."
-cd "$NAVIO2_C_DIR"
-sudo bash ./install_tools.sh
+sudo cp $RCIO_FIRMWARE /lib/firmware/

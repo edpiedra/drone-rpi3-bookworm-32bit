@@ -30,6 +30,9 @@ ensure_line(){
 
 require_root
 
+log "copying Navio2 overlays..."
+sudo cp $OVERLAYS_DIR/navio-rgb.dtbo /boot/overlays/
+
 log "adding Navio2 overlays to $CONFIG..."
 if [[ ! -f "$CONF" ]]; then
   echo "cannot find $CONF" >&2
