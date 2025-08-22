@@ -34,7 +34,7 @@ log "copying Navio2 overlays..."
 sudo cp $RCIO_FIRMWARE /lib/firmware
 sudo cp $OVERLAYS_DIR/navio-rgb.dtbo /boot/overlays/
 
-log "adding Navio2 overlays to $CONFIG..."
+log "adding Navio2 overlays to $CONF..."
 if [[ ! -f "$CONF" ]]; then
   echo "cannot find $CONF" >&2
   exit 1
