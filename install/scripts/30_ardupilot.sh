@@ -21,7 +21,7 @@ git submodule update --init --recursive
 log "installing build tools..."
 sudo apt install -y python3-serial python3-dev libtool libxml2-dev libxslt1-dev \
   gawk python3-pip pkg-config build-essential ccache libffi-dev \
-  libjpeg-dev zlib1g-dev
+  libjpeg-dev zlib1g-dev python3-empy
 sudo python3 -m pip install --upgrade pymavlink MAVProxy --break-system-packages
 
 log "building ArduCopter for Navio2..."

@@ -15,12 +15,12 @@ if [ ! -d .venv ]; then
 log "creating virtual environment..."
     python3 -m venv .venv --system-site-packages
     set +u; source .venv/bin/activate; set -u
-    python3 -m pip install "$NAVIO2_PYTHON_DIR/dist/navio2-1.0.0-py3-none-any.whl"
+    python3 -m pip install "$NAVIO2_WHEEL"
     python3 -m pip install -r requirements.txt
     set +u; deactivate; set -u
 else 
     set +u; source .venv/bin/activate; set -u
-    python3 -m pip install "$NAVIO2_PYTHON_DIR/dist/navio2-1.0.0-py3-none-any.whl"
+    python3 -m pip install "$NAVIO2_WHEEL"
     python3 -m pip install -r requirements.txt
     set +u; deactivate; set -u
 fi
