@@ -10,7 +10,7 @@ source "$SCRIPTS_DIR/00_lib.sh"
 NAVIO2_GIT="https://github.com/emlid/Navio2.git"
 
 log "installing system dependencies..."
-sudo apt install git cmake g++ python3 python3-pip screen -y
+sudo apt-get install git cmake g++ python3 python3-pip screen -y
 
 log "cloning from $NAVIO2_GIT..."
 
@@ -28,9 +28,3 @@ set +u; source env/bin/activate; set -u
 python3 -m pip install wheel
 python3 setup.py bdist_wheel
 set +u; deactivate; set -u
-
-log "adding Navio2 firmware..."
-sudo bash "$SCRIPTS_DIR/120_navio2_firmware.sh"
-
-log "adding Navio2 overlays..."
-sudo bash "$SCRIPTS_DIR/121_navio2_overlays.sh"

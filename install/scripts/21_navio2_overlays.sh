@@ -7,10 +7,8 @@ SCRIPTS_DIR="/home/pi/drone-rpi3-bookworm-32bit/install/scripts"
 source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
-OVERLAYS_DIR="$PROJECT_DIR/overlays"
-CONF=/boot/config.txt
 STAMP="$(date +%Y%m%d-%H%M%S)"
-BACKUP="$CONF.bak-${STAMP}"
+BACKUP="$BOOT_CONF.bak-${STAMP}"
 
 require_root(){
   if [[ $EUID -ne 0 ]]; then
@@ -21,8 +19,8 @@ require_root(){
 
 ensure_line(){
   local key="$1" value="$2"
-  if ! grep -q -E "^${key}=${value}$" "$CONF"; then
-    echo "${key}=${value}" >> "$CONF"
+  if ! grep -q -E "^${key}=${value}$" "$BOOT_CONF"; then
+    echo "${key}=${value}" >> "$BOOT_CONF"
     log "added: ${key}=${value}"
   else
     log "already present: ${key}=${value}"
@@ -34,14 +32,14 @@ require_root
 log "copying Navio2 overlays..."
 sudo cp $OVERLAYS_DIR/navio-rgb.dtbo /boot/overlays/
 
-log "adding Navio2 overlays to $CONF..."
-if [[ ! -f "$CONF" ]]; then
-  echo "cannot find $CONF" >&2
+log "adding Navio2 overlays to $BOOT_CONF..."
+if [[ ! -f "$BOOT_CONF" ]]; then
+  echo "cannot find $BOOT_CONF" >&2
   exit 1
 fi
 
-cp -a "$CONF" "$BACKUP"
-log "backed up $CONF -> $BACKUP"
+cp -a "$BOOT_CONF" "$BACKUP"
+log "backed up $BOOT_CONF -> $BACKUP"
 
 ensure_line "dtoverlay" "navio-rgb"
 ensure_line "enable_uart" "1"

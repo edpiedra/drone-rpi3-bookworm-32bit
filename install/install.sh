@@ -13,9 +13,17 @@ run_step() {
     bash "$step"
 }
 
+if [[ "$1" == "--continue-after-reboot" ]]; then
+    log "post-reboot tasks starting..."
+
+    for step in "$SCRIPTS_DIR"/[1-9][0-9][0-9]_*.sh; do 
+        run_step "$step"
+    done 
+
+    log "✅ Install complete. Logs saved to: $LOG_FILE"
+    exit 0
+fi 
+
 for step in "$SCRIPTS_DIR"/[0-9][0-9]_*.sh; do 
     run_step "$step"
 done 
-
-log "✅ Install complete. Logs saved to: $LOG_FILE"
-exit 0
