@@ -13,7 +13,7 @@ run_step() {
     bash "$step"
 }
 
-if [[ "$1" == "--continue-after-reboot" ]]; then
+if [[ "${1:-}" == "--continue-after-reboot" ]]; then
     log "post-reboot tasks starting..."
 
     for step in "$SCRIPTS_DIR"/[1-9][0-9][0-9]_*.sh; do 
