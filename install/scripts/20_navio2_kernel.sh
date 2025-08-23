@@ -30,7 +30,7 @@ fi
 cd linux-rt-rpi
 
 log "loading Pi 3 default config..."
-make ARCH=arm CROSS_COMPILE=arm7-linux-gnueabihf- bcm2709_defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig
 
 log "enabling Navio2 RCIO modules..."
 scripts/config --file .config \
@@ -41,7 +41,7 @@ scripts/config --file .config \
     --enable CONFIG_PREEMPT_RT
 
 set +e
-yes "" | make ARCH=arm CROSS_COMPILE=armv7-linux-gnueabihf- olddefconfig
+yes "" | make ARCH=arm CROSS_COMPILE=armv-linux-gnueabihf- olddefconfig
 MAKE_RC=$?
 set -e
 
@@ -50,10 +50,10 @@ if [[ $MAKE_RC -ne 0 ]]; then
 fi
 
 log "building kernel..."
-make -j$(nproc) ARCH=arm CROSS_COMPILE=arm7-linux-gnueabihf- zImage modules dtbs
+make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
 
 log "installing modules..."
-sudo make ARCH=arm CROSS_COMPILE=arm7-linux-gnueabihf- modules_install
+sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_install
 
 log "installing kernel and overlays..."
 sudo cp arch/arm/boot/zImage /boot/kernel7.img
