@@ -34,7 +34,6 @@ scripts/config --file .config \
     --enable CONFIG_SPI_BCM2835 \
     --module CONFIG_RCIO_SPI \
     --module CONFIG_RCIO_PWM \
-    --enable CONFIG_PREEMPT \
     --enable CONFIG_PREEMPT_RT
 
 yes "" | make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- olddefconfig
