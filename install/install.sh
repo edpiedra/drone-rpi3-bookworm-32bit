@@ -10,7 +10,9 @@ source "$SCRIPTS_DIR/00_lib.sh"
 if [ ! -d "$LOG_DIR"]; then 
     mkdir "$LOG_DIR" 
 else 
-    rm -f "$LOG_FILE"
+    if [ -f "$LOG_FILE"]; then 
+        rm -f "$LOG_FILE"
+    fi
 fi 
 
 run_step() {
