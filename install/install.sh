@@ -15,6 +15,11 @@ else
     fi
 fi 
 
+PI_MODEL=$(tr -d '\0' < /proc/device-tree/model)
+OS_VERSION=$(grep -oP '(?<=VERSION_CODENAME=).*' /etc/os-release)
+ARCH=$(uname -m)
+CPU_ARCH=$(uname -m)
+
 run_step() {
     local step="$1"
     log "running $step..."
@@ -33,10 +38,13 @@ if [[ "${1:-}" == "--continue-after-reboot" ]]; then
 elif [[ "${1:-}" == "--reinstall" ]]; then 
     log "reinstalling all packages..."
 
-    if [ -d $LOG_DIR]; then 
+    if [ -d "$LOG_DIR" ]; then 
         rm -rf "$LOG_DIR"
         mkdir "$LOG_DIR"
     fi 
+elif [[ "${1:-}" == "--v" ]]; then 
+    echo "$PI_MODEL : $OS_VERSION : $ARCH : $CPU_ARCH"
+    exit 0 
 fi 
 
 for step in "$SCRIPTS_DIR"/[0-9][0-9]_*.sh; do 

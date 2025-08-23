@@ -14,7 +14,7 @@ FIRMWARE_URL="https://github.com/emlid/rcio-firmware/raw/master/rcio.fw"
 INSTALL_FLAG="$LOG_DIR/navio2-kernel"
 
 log "checking to see if previous install ran successfully..."
-if [ -f $INSTALL_FLAG]; then 
+if [ -f "$INSTALL_FLAG" ]; then 
     log "Navio2 kernal install was already run successfully..."
     return 0 
 fi 

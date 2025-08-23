@@ -10,7 +10,7 @@ source "$SCRIPTS_DIR/00_lib.sh"
 INSTALL_FLAG="$LOG_DIR/ardupilot"
 
 log "checking to see if previous install ran successfully..."
-if [ -f $INSTALL_FLAG]; then 
+if [ -f "$INSTALL_FLAG" ]; then 
     log "ArduPilot install was already run successfully..."
     return 0 
 fi 
