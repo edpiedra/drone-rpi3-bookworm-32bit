@@ -7,10 +7,10 @@ SCRIPTS_DIR="/home/pi/drone-rpi3-bookworm-32bit/install/scripts"
 source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
-if [ ! -d "$LOG_DIR"]; then 
+if [ ! -d "$LOG_DIR" ]; then 
     mkdir "$LOG_DIR" 
 else 
-    if [ -f "$LOG_FILE"]; then 
+    if [ -f "$LOG_FILE" ]; then 
         rm -f "$LOG_FILE"
     fi
 fi 
