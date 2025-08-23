@@ -50,7 +50,7 @@ if [[ $MAKE_RC -ne 0 ]]; then
 fi
 
 log "building kernel..."
-make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
+make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- KCFLAGS="-march=armv7-a -mtune=cortex-a7 -mfpu=neon-vfpv4" zImage modules dtbs
 
 log "installing modules..."
 sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_install
