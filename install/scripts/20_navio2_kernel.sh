@@ -8,7 +8,7 @@ source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
 KERNEL_REPO="https://github.com/emlid/linux-rt-rpi.git"
-KERNEL_BRANCH="rpi-5.10.y-rt"
+KERNEL_BRANCH="rpi-5.10.11-navio"
 BUILD_DIR="$HOME/navio2-kernel"
 FIRMWARE_URL="https://github.com/emlid/rcio-firmware/raw/master/rcio.fw"
 
