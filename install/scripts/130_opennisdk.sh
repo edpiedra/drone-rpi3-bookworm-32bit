@@ -8,10 +8,17 @@ source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
 OPENNISDK_SOURCE="$PROJECT_DIR/sdks/$ARM_VERSION"
+INSTALL_FLAG="$LOG_DIR/opennisdk"
+
+log "checking to see if previous install ran successfully..."
+if [ -f $INSTALL_FLAG]; then 
+    log "OpenNI SDK install was already run successfully..."
+    return 0 
+fi 
 
 log "installing prerequisites..."
-sudo apt-get install -y freeglut3-dev 
-sudo apt-get install --reinstall -y libudev1
+sudo apt-get install -y -qq freeglut3-dev 
+sudo apt-get install --reinstall -y -qq libudev1
 
 log "copying OpenNI SDK distribution..."
 if [ -d "$OPENNISDK_DIR" ]; then 
@@ -57,3 +64,5 @@ make -j"$(nproc)" \
 
 log "making $SIMPLE_READ_EXAMPLE executable///"
 chmod 777 "$SIMPLE_READ_EXAMPLE/Bin/Arm-Release/SimpleRead"
+
+touch "$INSTALL_FLAG"

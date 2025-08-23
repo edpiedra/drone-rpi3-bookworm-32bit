@@ -29,5 +29,3 @@ EOF
 chmod +x "$WRAPPER_SCRIPT"
 (crontab -l 2>/dev/null; echo "@reboot $WRAPPER_SCRIPT") | crontab -
 
-read -p "→ Navio2 kernel and overlays installed. Press ENTER to reboot." _
-sudo reboot

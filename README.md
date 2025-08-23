@@ -7,6 +7,8 @@ cd ~
 git clone https://github.com/edpiedra/drone-rpi3-bookworm-32bit.git
 cd drone-rpi3-bookworm-32bit
 bash ./install/install.sh
+# for fresh reinstall
+bash ./install/install.sh --reinstall
 
 # it will ask you to plug the orbbec astra mini s camera into the usb and hit ENTER
 sudo reboot # when install is finished

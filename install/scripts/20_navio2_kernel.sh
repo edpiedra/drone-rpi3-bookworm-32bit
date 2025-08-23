@@ -11,9 +11,16 @@ KERNEL_REPO="https://github.com/emlid/linux-rt-rpi.git"
 KERNEL_BRANCH="rpi-5.10.11-navio"
 BUILD_DIR="$HOME/navio2-kernel"
 FIRMWARE_URL="https://github.com/emlid/rcio-firmware/raw/master/rcio.fw"
+INSTALL_FLAG="$LOG_DIR/navio2-kernel"
+
+log "checking to see if previous install ran successfully..."
+if [ -f $INSTALL_FLAG]; then 
+    log "Navio2 kernal install was already run successfully..."
+    return 0 
+fi 
 
 log "installing build dependencies..."
-sudo apt-get install -y git bc bison flex libssl-dev make libc6-dev libncurses5-dev \
+sudo apt-get install -y -qq git bc bison flex libssl-dev make libc6-dev libncurses5-dev \
     crossbuild-essential-armhf liblz4-tool libelf-dev u-boot-tools device-tree-compiler \
     wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 
@@ -69,3 +76,8 @@ sudo bash "$SCRIPTS_DIR/21_navio2_overlays.sh"
 
 log "preparing for reboot..."
 sudo bash "$SCRIPTS_DIR/22_navio2_reboot.sh"
+
+touch "$INSTALL_FLAG"
+
+read -p "→ Navio2 kernel and overlays installed. Press ENTER to reboot." _
+sudo reboot

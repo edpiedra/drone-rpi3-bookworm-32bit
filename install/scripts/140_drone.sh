@@ -7,8 +7,16 @@ SCRIPTS_DIR="/home/pi/drone-rpi3-bookworm-32bit/install/scripts"
 source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
+INSTALL_FLAG="$LOG_DIR/drone"
+
+log "checking to see if previous install ran successfully..."
+if [ -f $INSTALL_FLAG]; then 
+    log "OpenNI SDK install was already run successfully..."
+    return 0 
+fi 
+
 log "installing requirements in drone virtual environment..."
-sudo apt-get install -y python3-opencv python3-numpy 
+sudo apt-get install -y -qq python3-opencv python3-numpy 
 cd "$PROJECT_DIR"
 
 if [ ! -d .venv ]; then 
@@ -24,3 +32,5 @@ else
     python3 -m pip install -r requirements.txt
     set +u; deactivate; set -u
 fi
+
+touch "$INSTALL_FLAG"
