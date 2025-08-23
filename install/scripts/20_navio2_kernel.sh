@@ -36,7 +36,14 @@ scripts/config --file .config \
     --module CONFIG_RCIO_PWM \
     --enable CONFIG_PREEMPT_RT
 
+set +e
 yes "" | make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- olddefconfig
+MAKE_RC=$?
+set -e
+
+if [[ $MAKE_RC -ne 0 ]]; then
+    log "WARNING: olddefconfig exited with code $MAKE_RC"
+fi
 
 log "building kernel..."
 make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
