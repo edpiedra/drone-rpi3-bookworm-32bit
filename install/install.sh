@@ -7,10 +7,10 @@ SCRIPTS_DIR="/home/pi/drone-rpi3-bookworm-32bit/install/scripts"
 source "$SCRIPTS_DIR/00_common.env"
 source "$SCRIPTS_DIR/00_lib.sh"
 
-if [ ! -d $LOG_DIR]; then 
-    mkdir $LOG_DIR 
+if [ ! -d "$LOG_DIR"]; then 
+    mkdir "$LOG_DIR" 
 else 
-    rm -f $LOG_FILE 
+    rm -f "$LOG_FILE"
 fi 
 
 run_step() {
@@ -28,12 +28,12 @@ if [[ "${1:-}" == "--continue-after-reboot" ]]; then
 
     log "✅ Install complete. Logs saved to: $LOG_FILE"
     exit 0
-else if [[ "${1:-}" == "--reinstall" ]]; then 
+elif [[ "${1:-}" == "--reinstall" ]]; then 
     log "reinstalling all packages..."
 
     if [ -d $LOG_DIR]; then 
-        rm -d $LOG_DIR 
-        mkdir $LOG_DIR
+        rm -rf "$LOG_DIR"
+        mkdir "$LOG_DIR"
     fi 
 fi 
 
