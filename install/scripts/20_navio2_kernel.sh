@@ -18,6 +18,10 @@ sudo apt-get install -y git bc bison flex libssl-dev make libc6-dev libncurses5-
     wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 
 log "cloning Emlid RT kernel..."
+if [ -d "$BUILD_DIR" ]; then 
+    rm -rf "$BUILD_DIR"
+fi 
+
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 if [ ! -d "linux-rt-rpi" ]; then
